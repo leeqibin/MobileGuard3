@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
 import com.me.android.mobileguard.R;
+import com.me.android.mobileguard.m1home.HomeActivity;
 import com.me.android.mobileguard.m1home.entity.VersionEntity;
 
 import org.apache.http.HttpEntity;
@@ -21,8 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 
 
@@ -42,20 +42,7 @@ public class VersionUpdateUtils {
     private static final int MESSAGE_ENTERHOME = 105;
 
     private Handler handler = new Handler(){
-        @Override
-        public void publish(LogRecord logRecord) {
 
-        }
-
-        @Override
-        public void flush() {
-
-        }
-
-        @Override
-        public void close() throws SecurityException {
-
-        }
 
         public void handlerMessage(Message msg){
          switch (msg.what){
@@ -103,8 +90,9 @@ public class VersionUpdateUtils {
                 /*System.out.println(versionEntity.description);
                 DownloadUtils downloadUtils = new DownloadUtils();
                 downloadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);*/
-                if (!mVersion.equals(versionEntity.versioncode))
+                if (!mVersion.equals(versionEntity.versioncode)) {
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
+                }
             }
         } catch (IOException e) {
             handler.sendEmptyMessage(MESSAGE_IO_ERROR);
@@ -140,7 +128,7 @@ public class VersionUpdateUtils {
     }
     private void downloadNewApk(String apkurl){
         DownloadUtils downloadUtils = new DownloadUtils();
-        downloadUtils.downloadApk(apkurl,"mobileguard2.apk",context);
+        downloadUtils.downloadApk(apkurl,"mobileguard.apk",context);
     }
 
 }
