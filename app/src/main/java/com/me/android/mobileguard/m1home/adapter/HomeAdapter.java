@@ -44,7 +44,7 @@ public class HomeAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view1 = View.inflate(context, R.layout.item_home, null);
         ImageView iv_icon = view1.findViewById(R.id.iv_home);
-        TextView tv_name = view1.findViewById(R.id.tv_home);
+        TextView tv_name = view1.findViewById(R.id.tv_name);
         iv_icon.setImageResource(imageId[i]);
         tv_name.setText(names[i]);
         return view1;

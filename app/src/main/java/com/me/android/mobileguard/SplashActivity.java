@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         new Thread(){
             @Override
             public void run(){
-               super.run();
+                super.run();
                 versionUpdateUtils.getCloudVersion();
             }
         }.start();
