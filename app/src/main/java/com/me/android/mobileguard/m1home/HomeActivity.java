@@ -19,9 +19,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private GridView gv_home;
     private long mExitTime;
-    private SharedPreferences mSharedPreferences;
-    private DevicePolicyManager PolicyManager;
-    private ComponentName componentName;
+
 
 
     @Override
@@ -46,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
             if((System.currentTimeMillis()-mExitTime)<2000){
                 System.exit(0);
             }else{
-                Toast.makeText(this,"再按一次退出程序", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"再按一次就退出程序", Toast.LENGTH_LONG).show();
             }
             return true;
         }
