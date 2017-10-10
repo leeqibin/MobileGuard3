@@ -14,25 +14,27 @@ import android.widget.Toast;
 import com.me.android.mobileguard.R;
 
 import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.dialog.InterPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.dialog.SetUpPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 public class HomeActivity extends AppCompatActivity{
     private GridView gv_home;
     private long mExitTime;
-    private SharedPreferences mSharedPreferences;
+    private SharedPreferences msharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
+        msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
         gv_home=(GridView)findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView,View view,int i,long l){
+               System.out.print(i);
                 switch (i){
                     case 0:
                         if (isSetUpPassword()){
@@ -65,8 +67,7 @@ public class HomeActivity extends AppCompatActivity{
     private void showSetUpPaswdDialog(){
         final SetUpPasswordDialog setUpPasswordDialog = new SetUpPasswordDialog(
                 HomeActivity.this);
-        setUpPasswordDialog
-                .setCallBack(new SetUpPasswordDialog.MyCallBack(){
+        setUpPasswordDialog.setMyCallBack(new SetUpPasswordDialog.MyCallBack(){
                     @Override
                     public void ok(){
                         String firstPwsd = setUpPasswordDialog.mFirstPWDET
@@ -114,8 +115,9 @@ public class HomeActivity extends AppCompatActivity{
                 }
 
             }
+
             @Override
-            public void cancle(){
+            public void cancel() {
                 mInPswdDialog.dismiss();
             }
         });
@@ -123,11 +125,12 @@ public class HomeActivity extends AppCompatActivity{
         mInPswdDialog.show();
     }
     private void  savePswd(String affirmPwsd){
-        SharedPreferences.Editor edit = mSharedPreferences.edit();
+        SharedPreferences.Editor edit = msharedPreferences.edit();
         edit.putString("PhoneAntiTheftPWD",MD5Utils.encode(affirmPwsd));
+        edit.commit();
     }
     private String getPassword(){
-        String password = mSharedPreferences.getString("PhoneAntiTheftPWD",
+        String password = msharedPreferences.getString("PhoneAntiTheftPWD",
                 null);
         if (TextUtils.isEmpty(password)){
             return "";
@@ -135,7 +138,7 @@ public class HomeActivity extends AppCompatActivity{
         return password;
     }
     private boolean isSetUpPassword() {
-        String password = mSharedPreferences.getString("PhoneAntiTheftPWD",
+        String password = msharedPreferences.getString("PhoneAntiTheftPWD",
                 null);
         if (TextUtils.isEmpty(password)) {
             return false;
