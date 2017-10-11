@@ -115,6 +115,7 @@ public class VersionUpdateUtils {
             public void onClick(DialogInterface dialogInterface,int i){
                 dialogInterface.dismiss();
                 enterHome();
+                System.out.print("11");
             }
         });
         builder.show();

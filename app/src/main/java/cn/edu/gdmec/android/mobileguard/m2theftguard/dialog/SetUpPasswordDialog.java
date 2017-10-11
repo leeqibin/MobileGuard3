@@ -48,7 +48,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
             mTitleTV.setText(title);
         }
     }
-    public void setMyCallBack(MyCallBack myCallBack){
+    public void setCallBack(MyCallBack myCallBack){
         this.myCallBack = myCallBack;
     }
 
