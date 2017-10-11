@@ -19,7 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="cn.edu.gdmec.android.mobileguard.m1home.HomeActivity"></activity>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m1home.HomeActivity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.BaseSetUpActivity">
+        </activity>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity">
+        </activity>
     </application>
 
 </manifest>

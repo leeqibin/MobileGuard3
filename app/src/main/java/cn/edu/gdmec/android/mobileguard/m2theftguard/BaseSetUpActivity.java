@@ -1,10 +1,15 @@
 package cn.edu.gdmec.android.mobileguard.m2theftguard;
 
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-/**
- * Created by pc on 2017/10/11.
- */
+import com.me.android.mobileguard.R;
 
-public class BaseSetUpActivity extends AppCompatActivity{
+public class BaseSetUpActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_base_set_up);
+    }
 }
