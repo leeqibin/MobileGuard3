@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m2theftguard;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,5 +12,13 @@ public class LostFindActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_find);
+        startSetup1Activity();
     }
+
+    private void startSetup1Activity() {
+        Intent intent = new Intent(LostFindActivity.this,Setup1Activity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
