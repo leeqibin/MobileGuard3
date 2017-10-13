@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.me.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.R;
 
 
 /**

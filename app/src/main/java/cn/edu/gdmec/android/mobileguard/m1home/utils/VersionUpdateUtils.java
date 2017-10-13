@@ -8,8 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import com.me.android.mobileguard.R;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -22,6 +20,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 
