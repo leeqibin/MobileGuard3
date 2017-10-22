@@ -24,6 +24,7 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
         setContentView(R.layout.activity_setup_3);
         ((RadioButton) findViewById(R.id.rb_third)).setChecked(true);
 
+        ((RadioButton) findViewById(R.id.rb_third)).setChecked(true);
         findViewById(R.id.btn_addcontact).setOnClickListener(this);
         mInputPhone=(EditText)findViewById(R.id.et_inputphone);
         String safephone=sp.getString("safephone",null);
@@ -36,11 +37,12 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
     @Override
     public void showNext() {
         String safephone=mInputPhone.getText().toString().trim();
-        if (!TextUtils.isEmpty(safephone)){
+        if (TextUtils.isEmpty(safephone)){
             Toast.makeText(this,"请输入安全号码",Toast.LENGTH_LONG).show();
             return;
         }
         SharedPreferences.Editor editor=sp.edit();
+        editor.putString("safephone",safephone);
         editor.commit();
         startActivityAndFinishSelf(Setup4Activity.class);
     }

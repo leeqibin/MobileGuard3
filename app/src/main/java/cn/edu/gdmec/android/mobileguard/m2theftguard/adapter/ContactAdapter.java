@@ -1,7 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m2theftguard.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -45,9 +44,9 @@ public class ContactAdapter extends BaseAdapter{
         ViewHolder holder = null;
         if (view == null) {
             view = View.inflate(context, R.layout.item_list_contact_select, null);
-           ViewHolder holder1 = new ViewHolder();
-            holder1.mNameTV = (TextView) view.findViewById(R.id.tv_name);
-            holder1.mPhoneTV = (TextView) view.findViewById(R.id.tv_safephone);
+            holder = new ViewHolder();
+            holder.mNameTV = (TextView) view.findViewById(R.id.tv_name);
+            holder.mPhoneTV = (TextView) view.findViewById(R.id.tv_phone);
             view.setTag(holder);
         } else {
             holder=(ViewHolder) view.getTag();

@@ -19,10 +19,6 @@ import cn.edu.gdmec.android.mobileguard.R;
 public class Setup2Activity extends BaseSetUpActivity implements View.OnClickListener{
     private TelephonyManager mTelephonyManager;
     private Button mBindSIMBtn;
-
-    public Setup2Activity() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +32,6 @@ public class Setup2Activity extends BaseSetUpActivity implements View.OnClickLis
         }else{
             mBindSIMBtn.setEnabled(true);
         }
-
     }
     private boolean isBind(){
         String simString=sp.getString("sim",null);
