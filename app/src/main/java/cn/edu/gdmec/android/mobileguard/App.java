@@ -22,7 +22,7 @@ public class App extends Application{
         boolean protecting=sp.getBoolean("protecting",true);
         if(protecting){
             String bindsim=sp.getString("sim","");
-            TelephonyManager tm=(TelephonyManager) getSystemService(Context.TELECOM_SERVICE);
+            TelephonyManager tm=(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             String realsim=tm.getSimSerialNumber();
             realsim="999";
             if (bindsim.equals(realsim)){

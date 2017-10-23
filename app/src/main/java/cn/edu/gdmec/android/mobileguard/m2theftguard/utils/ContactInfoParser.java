@@ -18,7 +18,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.entity.ContactInfo;
 public class ContactInfoParser {
     public static List<ContactInfo> getSystemContact(Context context) {
         ContentResolver resolver = context.getContentResolver();
-        Uri uri = Uri.parse("content;//com.android.contacts/raw_contacts");
+        Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Uri datauri = Uri.parse("content://com.android.contacts/data");
         List<ContactInfo> infos = new ArrayList<ContactInfo>();
         Cursor cursor = resolver.query(uri, new String[]{"contact_id"},
@@ -44,30 +44,31 @@ public class ContactInfoParser {
                 }
                 if (TextUtils.isEmpty(info.name) && TextUtils.isEmpty(info.phone))
                     continue;
-                    infos.add(info);
-                    dataCursor.close();
+                infos.add(info);
+                dataCursor.close();
             }
         }
         cursor.close();
         return infos;
     }
-    public static List<ContactInfo> getSimContacts(Context context){
-        Uri uri =Uri.parse("content://icc/adn");
-        List<ContactInfo> infos=new ArrayList<ContactInfo>();
+
+
+
+    public static List<ContactInfo>getSimContacts(Context context){
+        Uri uri=Uri.parse("content://icc/adn");
+        List<ContactInfo>infos=new ArrayList<ContactInfo>();
         Cursor mCursor=context.getContentResolver().query(uri,null,null,null,null);
         if (mCursor!=null){
             while (mCursor.moveToNext()){
                 ContactInfo info=new ContactInfo();
                 int nameFieldColumnIndex=mCursor.getColumnIndex("name");
                 info.name=mCursor.getString(nameFieldColumnIndex);
-                int numberFieldColumnIndex=mCursor.getColumnIndex("number");
-                info.phone=mCursor.getString(numberFieldColumnIndex
-                );
+                int numberFieldColumIndex=mCursor.getColumnIndex("number");
+                info.phone=mCursor.getString(numberFieldColumIndex);
                 infos.add(info);
             }
         }
         mCursor.close();
         return infos;
-
     }
 }
