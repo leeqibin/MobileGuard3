@@ -10,7 +10,7 @@ import cn.edu.gdmec.android.mobileguard.App;
  * Created by student on 17/10/17.
  */
 
-public class BootCompleteReciever extends BroadcastReceiver{
+public class BootCompleteReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent){
         ((App)(context.getApplicationContext())).correctSIM();
