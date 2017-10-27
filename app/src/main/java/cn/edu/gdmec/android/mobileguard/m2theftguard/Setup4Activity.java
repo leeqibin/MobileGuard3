@@ -9,11 +9,9 @@ import android.widget.ToggleButton;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-/**
- * Created by 黄煜辉 on 2017/9/20.
- */
 
-public class SetUp4Activity extends BaseSetUpActivity{
+
+public class Setup4Activity extends BaseSetUpActivity{
     private TextView mStatusTV;
     private ToggleButton mToggleButton;
     @Override
