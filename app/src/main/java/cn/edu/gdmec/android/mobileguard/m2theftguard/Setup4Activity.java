@@ -10,10 +10,10 @@ import android.widget.ToggleButton;
 import cn.edu.gdmec.android.mobileguard.R;
 
 /**
- * Created by pc on 2017/10/11.
+ * Created by 黄煜辉 on 2017/9/20.
  */
 
-public class Setup4Activity extends BaseSetUpActivity {
+public class SetUp4Activity extends BaseSetUpActivity{
     private TextView mStatusTV;
     private ToggleButton mToggleButton;
     @Override
@@ -25,7 +25,7 @@ public class Setup4Activity extends BaseSetUpActivity {
     }
     private void initView() {
         ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
-        mStatusTV=(TextView)findViewById(R.id.togglebtn_securityfunction);
+        mStatusTV=(TextView)findViewById(R.id.tv_setup4_status);
         mToggleButton=(ToggleButton)findViewById(R.id.togglebtn_securityfunction);
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -49,8 +49,6 @@ public class Setup4Activity extends BaseSetUpActivity {
             mToggleButton.setChecked(false);
         }
     }
-
-
     @Override
     public void showNext() {
         SharedPreferences.Editor editor=sp.edit();
@@ -64,4 +62,5 @@ public class Setup4Activity extends BaseSetUpActivity {
     public void showPre() {
         startActivityAndFinishShelf(Setup3Activity.class);
     }
+
 }
