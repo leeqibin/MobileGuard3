@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.entity.BlackContactInfo;
 
@@ -58,7 +59,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.img_leftbtn:
+            case R.id.imgv_leftbtn:
                 finish();
                 break;
             case R.id.add_blacknum_btn:

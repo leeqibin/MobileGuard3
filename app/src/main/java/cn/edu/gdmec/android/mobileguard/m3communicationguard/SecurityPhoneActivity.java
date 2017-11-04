@@ -4,55 +4,103 @@ package cn.edu.gdmec.android.mobileguard.m3communicationguard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.AbsListView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m3communicationguard.adapter.BlackContactAdapter;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.entity.BlackContactInfo;
 
 public class SecurityPhoneActivity extends AppCompatActivity implements View.OnClickListener{
-    private CheckBox mSmsCB;
-    private CheckBox mTelCB;
-    private EditText mNumET;
-    private EditText mNameET;
+    private FrameLayout mHaveBlackNumber;
+    private FrameLayout mNoBlackNumber;
     private BlackNumberDao dao;
+    private ListView mListView;
+    private int pagenumber = 0;
+    private int pagesize = 15;
+    private int totalNumber;
+    private List<BlackContactInfo> pageBlackNumber = new ArrayList<BlackContactInfo>();
+    private BlackContactAdapter adapter;
+
+    private void fillData(){
+        dao = new BlackNumberDao(SecurityPhoneActivity.this);
+        totalNumber = dao.getTotalNumber();
+        if(totalNumber == 0){
+            mHaveBlackNumber.setVisibility(View.GONE);
+            mNoBlackNumber.setVisibility(View.VISIBLE);
+        }else if(totalNumber>0){
+            mHaveBlackNumber.setVisibility(View.VISIBLE);
+            mNoBlackNumber.setVisibility(View.GONE);
+            pagenumber = 0;
+            if(pageBlackNumber.size() > 0){
+                pageBlackNumber.clear();
+            }
+            pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
+            if(adapter == null){
+                adapter = new BlackContactAdapter(pageBlackNumber,SecurityPhoneActivity.this);
+                adapter.setCallBack(new BlackContactAdapter.BlackContactCallBack(){
+                    @Override
+                    public void DataSizeChanged() {
+                        fillData();
+                    }
+                });
+                mListView.setAdapter(adapter);
+            }else{
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_purple));
-        ((TextView) findViewById(R.id.tv_title)).setText("添加黑名单");
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
+        ((TextView) findViewById(R.id.tv_title)).setText("通讯卫士");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
+        mHaveBlackNumber = (FrameLayout) findViewById(R.id.fl_haveblacknumber);
+        mNoBlackNumber = (FrameLayout) findViewById(R.id.fl_noblacknumber);
+        findViewById(R.id.btn_addblacknumber).setOnClickListener(this);
+        mListView = (ListView) findViewById(R.id.lv_blacknumbers);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                switch (i){
+                    case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
+                        int lastVisiblePosition = mListView.getLastVisiblePosition();
+                        if(lastVisiblePosition == pageBlackNumber.size() - 1){
+                            pagenumber++;
+                            if(pagenumber * pagesize >= totalNumber){
+                                Toast.makeText(SecurityPhoneActivity.this,"没有更多的数据了",Toast.LENGTH_LONG).show();
+                            }else{
+                                pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                        break;
+                }
+            }
 
-        mSmsCB = (CheckBox) findViewById(R.id.cb_blacknumber_sms);
-        mTelCB = (CheckBox) findViewById(R.id.cb_blacknumber_tel);
-        mNumET = (EditText) findViewById(R.id.et_balcknumber);
-        mNameET = (EditText) findViewById(R.id.et_blackname);
-        findViewById(R.id.add_blacknum_btn).setOnClickListener(this);
-        findViewById(R.id.add_fromcontact_btn).setOnClickListener(this);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(data != null){
-            String phone = data.getStringExtra("phone");
-            String name = data.getStringExtra("name");
-            mNameET.setText(name);
-            mNumET.setText(phone);
-        }
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+            }
+        });
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_black_number);
-        dao = new BlackNumberDao(AddBlackNumberActivity.this);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_security_phone);
         initView();
+        fillData();
     }
 
     @Override
@@ -61,37 +109,27 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
             case R.id.imgv_leftbtn:
                 finish();
                 break;
-            case R.id.add_blacknum_btn:
-                String number = mNumET.getText().toString().trim();
-                String name = mNameET.getText().toString().trim();
-                if(TextUtils.isEmpty(number) || TextUtils.isEmpty(name)){
-                    Toast.makeText(this,"电话号码和手机号不能为空！",Toast.LENGTH_LONG).show();
-                    return;
-                }else{
-                    BlackContactInfo blackContactInfo = new BlackContactInfo();
-                    blackContactInfo.phoneNumber = number;
-                    blackContactInfo.contactName = name;
-                    if(mSmsCB.isChecked() & mTelCB.isChecked()){
-                        blackContactInfo.mode = 3;
-                    }else if(mSmsCB.isChecked() & !mTelCB.isChecked()){
-                        blackContactInfo.mode = 2;
-                    }else if(!mSmsCB.isChecked() & mTelCB.isChecked()){
-                        blackContactInfo.mode = 1;
-                    }else{
-                        Toast.makeText(this,"请选择拦截模式！",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if(!dao.IsNumberExist(blackContactInfo.phoneNumber)){
-                        dao.add(blackContactInfo);
-                    }else{
-                        Toast.makeText(this,"该号码已经被添加至黑名单",Toast.LENGTH_SHORT).show();
-                    }
-                    finish();
-                }
+            case R.id.btn_addblacknumber:
+                startActivity(new Intent(this,AddBlackNumberActivity.class));
                 break;
-            case R.id.add_fromcontact_btn:
-                startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
-                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(dao.getTotalNumber() > 0){
+            mHaveBlackNumber.setVisibility(View.VISIBLE);
+            mNoBlackNumber.setVisibility(View.GONE);
+        }else{
+            mHaveBlackNumber.setVisibility(View.GONE);
+            mNoBlackNumber.setVisibility(View.VISIBLE);
+        }
+        pagenumber = 0;
+        pageBlackNumber.clear();
+        pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
+        if(adapter != null){
+            adapter.notifyDataSetInvalidated();
         }
     }
 }
