@@ -5,4 +5,5 @@ package cn.edu.gdmec.android.mobileguard.m3communicationguard.adapter;
  */
 
 public class ContactAdapter {
+
 }

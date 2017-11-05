@@ -1,4 +1,5 @@
-package cn.edu.gdmec.android.mobileguard.m3communicationguard.db.receiver;
+package cn.edu.gdmec.android.mobileguard.m3communicationguard.receiver;
+
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -20,7 +21,7 @@ import java.lang.reflect.Method;
 
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 
-public class InterceptCallReciever extends BroadcastReceiver {
+public  class InterceptCallReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences mSP = context.getSharedPreferences("config",Context.MODE_PRIVATE);
@@ -52,7 +53,7 @@ public class InterceptCallReciever extends BroadcastReceiver {
         private String incomingNumber;
         private Context context;
 
-        public CallLogObserver(Handler handler,String incomingNumber,Context context){
+        public CallLogObserver(Handler handler, String incomingNumber, Context context){
             super(handler);
             this.incomingNumber = incomingNumber;
             this.context = context;
@@ -82,6 +83,7 @@ public class InterceptCallReciever extends BroadcastReceiver {
             IBinder iBinder = (IBinder) method.invoke(null,Context.TELEPHONY_SERVICE);
             ITelephony itelephony = ITelephony.Stub.asInterface(iBinder);
             itelephony.endCall();
+
         }catch (Exception e){
             e.printStackTrace();
         }

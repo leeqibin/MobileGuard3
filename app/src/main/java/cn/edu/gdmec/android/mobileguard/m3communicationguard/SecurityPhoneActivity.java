@@ -1,6 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import java.util.List;
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.adapter.BlackContactAdapter;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
-import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.entity.BlackContactInfo;
+import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
 public class SecurityPhoneActivity extends AppCompatActivity implements View.OnClickListener{
     private FrameLayout mHaveBlackNumber;
@@ -47,7 +46,7 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
             pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
             if(adapter == null){
                 adapter = new BlackContactAdapter(pageBlackNumber,SecurityPhoneActivity.this);
-                adapter.setCallBack(new BlackContactAdapter.BlackContactCallBack(){
+                adapter.setCallBack(new BlackContactAdapter.BlackConactCallBack(){
                     @Override
                     public void DataSizeChanged() {
                         fillData();
@@ -65,7 +64,7 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
         ((TextView) findViewById(R.id.tv_title)).setText("通讯卫士");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
-        mHaveBlackNumber = (FrameLayout) findViewById(R.id.fl_haveblacknumber);
+        mHaveBlackNumber = (FrameLayout) findViewById(R.id.fl_haveblaknumber);
         mNoBlackNumber = (FrameLayout) findViewById(R.id.fl_noblacknumber);
         findViewById(R.id.btn_addblacknumber).setOnClickListener(this);
         mListView = (ListView) findViewById(R.id.lv_blacknumbers);

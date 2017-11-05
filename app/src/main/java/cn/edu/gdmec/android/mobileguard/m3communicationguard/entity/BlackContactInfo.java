@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.mobileguard.m3communicationguard.db.entity;
+package cn.edu.gdmec.android.mobileguard.m3communicationguard.entity;
 
 /**
  * Created by student on 17/10/17.
