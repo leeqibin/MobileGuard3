@@ -25,9 +25,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
         super(context, R.style.dialog_custom);
     }
 
-    public void setMyCallBack(MyCallBack myCallBack){
-        this.myCallBack=myCallBack;
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.setup_password_dialog);
@@ -47,6 +45,9 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
             mTitleTV.setText(title);
         }
     }
+    public void setCallBack(MyCallBack myCallBack){
+        this.myCallBack = myCallBack;
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -60,6 +61,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
         }
 
     }
+
 
 
 

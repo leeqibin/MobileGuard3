@@ -27,7 +27,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:text="你还没有添加黑名单"
-                    android:textColor="@color/light_gray"
+                    android:textColor="@color/light_gary"
                     android:textScaleX="1.2"/>
             </RelativeLayout>
         </FrameLayout>
