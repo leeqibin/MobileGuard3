@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.AbsListView;
@@ -73,7 +73,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
             };
         }.start();
     }
-    class UninstallRececiver extends BroadcastReceiver {
+    class UninstallRececiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
             initData();
@@ -125,7 +125,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     private void initListener(){
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
                 if(adapter != null){
                     new Thread(){
                         public void run(){
