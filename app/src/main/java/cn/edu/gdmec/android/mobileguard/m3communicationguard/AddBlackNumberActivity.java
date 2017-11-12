@@ -19,7 +19,7 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberD
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
 /**
- * Created by student on 17/10/17.
+ * Created by student on 17/10/17。。。。.
  */
 
 public class AddBlackNumberActivity extends AppCompatActivity implements View.OnClickListener{
