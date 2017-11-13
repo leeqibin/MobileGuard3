@@ -7,6 +7,10 @@ import android.graphics.drawable.Drawable;
  */
 
 public class AppInfo {
+    public AppInfo() {
+        super();
+    }
+
     public String packageName;
     public Drawable icon;
     public String appName;
