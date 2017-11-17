@@ -27,6 +27,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
     private CheckBox mTelCB;
     private EditText mNumET;
     private EditText mNameET;
+
     private EditText mFenlei;
     private BlackNumberDao dao;
 
