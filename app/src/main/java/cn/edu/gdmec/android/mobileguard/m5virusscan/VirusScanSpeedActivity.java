@@ -114,7 +114,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                 for (PackageInfo info : installedPackages) {
                     if (!flag) {
                         isStop = true;
-                        return;
+                        return;//ppp
                     }
                     String apkpath = info.applicationInfo.sourceDir;
                     String md5info = MD5Utils.getFileMd5(apkpath);
