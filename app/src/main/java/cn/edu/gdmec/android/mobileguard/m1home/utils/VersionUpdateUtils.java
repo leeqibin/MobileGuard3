@@ -81,9 +81,9 @@ public class VersionUpdateUtils {
                 versionEntity.description = jsonObject.getString("des");
                 versionEntity.apkurl = jsonObject.getString("apkurl");
                 if (!mVersion.equals(versionEntity.versioncode)) {
-                    //  System.out.println(versionEntity.description);
-                    //  DownloadUtils downloadUtils = new DownloadUtils();
-                    //  downloadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);
+                    System.out.println(versionEntity.description);
+                    DownloadUtils downloadUtils = new DownloadUtils();
+                    downloadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
                 }
             }
