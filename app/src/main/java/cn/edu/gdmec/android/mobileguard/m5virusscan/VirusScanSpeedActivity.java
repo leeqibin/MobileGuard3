@@ -80,7 +80,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
 
         private void saveScanTime() {
             SharedPreferences.Editor edit = mSP.edit();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-HH-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             String currentTime = sdf.format(new Date());
             currentTime = "上次杀毒：" + currentTime;
             edit.putString("lastVirusScan", currentTime);

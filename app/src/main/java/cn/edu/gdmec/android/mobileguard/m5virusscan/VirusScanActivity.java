@@ -79,7 +79,7 @@ findViewById(R.id.rl_allscanvirus).setOnClickListener(this);
             finish();
             break;
         case R.id.rl_allscanvirus:
-            startActivity(new Intent(this,VirusScanActivity.class));
+            startActivity(new Intent(this,VirusScanSpeedActivity.class));
             break;
     }
 }
