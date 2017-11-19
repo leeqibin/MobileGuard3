@@ -25,9 +25,9 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private GridView gv_home;
-    private long mExitTime;
 
+    private long mExitTime;
+    private GridView gv_home;
     private SharedPreferences msharedPreferences;
     private DevicePolicyManager policyManager;
     private ComponentName componentName;
@@ -59,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 3:
                         startActivity(VirusScanActivity.class);
+                        break;
                 }
             }
         });
@@ -80,11 +81,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            if((System.currentTimeMillis()-mExitTime)<2000){
-                System.exit(0);
-            }else{
+            if((System.currentTimeMillis()-mExitTime)>2000){
                 Toast.makeText(this,"再按一次退出程序",Toast.LENGTH_LONG).show();
                 mExitTime = System.currentTimeMillis();
+            }else{
+                System.exit(0);
             }
             return true;
         }

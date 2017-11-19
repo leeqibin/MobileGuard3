@@ -29,9 +29,6 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.adapter.ScanVirusAdapter;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
 
-
-import static android.content.Context.MODE_PRIVATE;
-
 /**
  * Created by student on 17/10/17.
  */
@@ -135,7 +132,8 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     }
                     process++;
                     scanInfo.packagename = info.packageName;
-                    scanInfo.appName = info.applicationInfo.loadLabel(pm).toString();
+                    scanInfo.appName = info.applicationInfo.loadLabel(pm)
+                            .toString();
                     scanInfo.appicon = info.applicationInfo.loadIcon(pm);
                     msg.obj = scanInfo;
                     msg.arg1 = process;
@@ -197,7 +195,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
 
                 } else if (isStop) {
                     startAnim();
-                    mCancleBtn.setBackgroundResource(R.drawable.cancle_scan_btn_selector);
+                    mCancleBtn.setBackgroundResource(R.drawable.cancel_scan_btn_selector);
                 }
                 break;
         }

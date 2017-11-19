@@ -2,21 +2,15 @@ package cn.edu.gdmec.android.mobileguard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 import android.widget.TextView;
-
-
-
-import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
-import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView mTvVersion;
     private String mVersion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+      /*  requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
         mVersion = MyUtils.getVersion(getApplicationContext());
         mTvVersion=(TextView)findViewById(R.id.tv_splash_version);
@@ -28,6 +22,6 @@ public class SplashActivity extends AppCompatActivity {
                 super.run();
                 versionUpdateUtils.getCloudVersion();
             }
-        }.start();
+        }.start();*/
     }
 }
