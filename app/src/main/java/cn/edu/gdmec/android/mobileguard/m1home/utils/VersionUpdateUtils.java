@@ -32,9 +32,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
-/**
- * Created by 黄煜辉 on 2017/9/12.
- */
+
 
 public class VersionUpdateUtils {
     //声明类属性
