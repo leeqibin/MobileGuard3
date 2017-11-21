@@ -76,7 +76,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         }.start();
     }
     private void copyDB(final String dbname,final String fromPath) {
-        new Thread (  ){
+        new Thread (){
             public void run(){
                 try{
                     File file = new File ( getFilesDir (),dbname );
@@ -91,7 +91,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                     }else{
                         file = new File(fromPath,
                                 "antivirus.db");
-                        is= new FileInputStream(file);
+                        is= new FileInputStream (file);
                     }
                     FileOutputStream fos = openFileOutput ( dbname, MODE_PRIVATE );
                     byte[] buffer = new byte[1024];
