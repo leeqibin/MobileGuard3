@@ -99,7 +99,7 @@
         <activity android:name=".m5virusscan.VirusScanActivity"/>
         <activity android:name=".m5virusscan.VirusScanSpeedActivity"/>
         <!--m6-->
-       <!-- <activity android:name=".m6cleancache.CleanCacheActivity"/>
-        <activity android:name=".m6cleancache.CacheClearListActivity"/>-->
+        <activity android:name=".m6cleancache.CleanCacheActivity"/>
+        <activity android:name=".m6cleancache.CacheClearListActivity"/>
     </application>
 </manifest>

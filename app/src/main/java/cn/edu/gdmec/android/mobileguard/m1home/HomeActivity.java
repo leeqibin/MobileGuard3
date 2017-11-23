@@ -65,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 4://缓存清理
                         startActivity(CacheClearListActivity.class);
+                        break;
                     case 5://进程管理
                         //startActivity(ProcessManagerActivity.class);
                         break;
