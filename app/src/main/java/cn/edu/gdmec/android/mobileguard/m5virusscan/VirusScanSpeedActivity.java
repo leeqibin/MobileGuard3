@@ -95,7 +95,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         Intent intent=getIntent();
         boolean cloudscan=intent.getBooleanExtra("cloud",false);
         if(cloudscan){
-            cloudScanVirus();
+
         }else{
             scanVirus();
         }
