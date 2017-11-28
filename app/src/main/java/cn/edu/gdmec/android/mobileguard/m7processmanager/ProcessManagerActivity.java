@@ -5,4 +5,5 @@ package cn.edu.gdmec.android.mobileguard.m7processmanager;
  */
 
 public class ProcessManagerActivity {
+    
 }

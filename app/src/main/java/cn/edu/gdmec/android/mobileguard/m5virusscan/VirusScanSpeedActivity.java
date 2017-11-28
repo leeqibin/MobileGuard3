@@ -1,10 +1,9 @@
 package cn.edu.gdmec.android.mobileguard.m5virusscan;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,6 +36,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
     protected static final int SCAN_BENGIN = 100;
     protected static final int SCANNING = 101;
     protected static final int SCAN_FINISH = 102;
+    protected static final String VIRUSSCANAPI="http://android2017.duapp.com/cloudvirusscan.php";
     private int total;
     private int process;
     private TextView mprocessTV;
@@ -92,7 +92,14 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         pm = getPackageManager();
         mSP = getSharedPreferences("config", MODE_PRIVATE);
         initView();
-        scanVirus();
+        Intent intent=getIntent();
+        boolean cloudscan=intent.getBooleanExtra("cloud",false);
+        if(cloudscan){
+            cloudScanVirus();
+        }else{
+            scanVirus();
+        }
+
     }
 
     private void scanVirus() {
