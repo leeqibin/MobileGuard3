@@ -18,7 +18,8 @@ public class SystemInfoUtils {
             if (className.equals(serviceClassName)){
                 return true;
             }
-            return false;
+
         }
+        return false;
     }
 }
