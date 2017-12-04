@@ -53,6 +53,7 @@ public class OperatorSetActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.btn_operator_finish:
                 edit.putInt("operator",mSelectSP.getSelectedItemPosition()+1);
+                edit.putBoolean("isset_operator", true);
                 edit.commit();
                 startActivity(new Intent(this, TrafficMonitoringService.class));
                 finish();
