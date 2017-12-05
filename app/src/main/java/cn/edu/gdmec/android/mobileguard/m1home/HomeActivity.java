@@ -71,7 +71,6 @@ public class HomeActivity extends AppCompatActivity {
                         //startActivity(ProcessManagerActivity.class);
                         break;
                     case 6://流量统计
-
                         startActivity(TrafficMonitoringActivity.class);
                         break;
                     case 7://高级工具
