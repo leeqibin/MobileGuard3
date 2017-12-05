@@ -22,7 +22,8 @@ public class TrafficMonitoringService extends Service{
     private TrafficDao dao;
     private SharedPreferences mSp;
     private long usedFlow;
-    boolean flag=true;
+    boolean flag = true;
+
     @Override
     public IBinder onBind(Intent intent){
         return null;
@@ -30,66 +31,67 @@ public class TrafficMonitoringService extends Service{
     @Override
     public void onCreate(){
         super.onCreate();
-        mOldRxBytes= TrafficStats.getMobileRxBytes();
-        mOldTxBytes=TrafficStats.getMobileTxBytes();
-        dao =new TrafficDao(this);
-        mSp=getSharedPreferences("config",MODE_PRIVATE);
+        mOldRxBytes = TrafficStats.getMobileRxBytes();
+        mOldTxBytes = TrafficStats.getMobileTxBytes();
+        dao = new TrafficDao(this);
+        mSp = getSharedPreferences("config", MODE_PRIVATE);
         mThread.start();
     }
-    private Thread mThread=new Thread(){
+
+    private Thread mThread = new Thread(){
         public void run(){
-            while(flag){
-                try{
-                    Thread.sleep(2000*600);
-                }catch(InterruptedException
-                         e){
+            while (flag){
+                try {
+                    Thread.sleep(2000 * 60);
+                }catch (InterruptedException e){
                     e.printStackTrace();
                 }
                 updateTodayGPRS();
             }
         }
         private void updateTodayGPRS(){
-            usedFlow=mSp.getLong("usedFlow",0);
-            Date date=new Date();
-            Calendar calendar=Calendar.getInstance();
+            usedFlow = mSp.getLong("usedflow", 0);
+            Date date = new Date();
+            Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            if (calendar.DAY_OF_MONTH==1&calendar.HOUR_OF_DAY==0&
-                    calendar.MINUTE<1&calendar.SECOND<30){
-                usedFlow=0;
+            if (calendar.DAY_OF_MONTH == 1 & calendar.HOUR_OF_DAY ==0)
+                if(calendar.DAY_OF_MONTH == 1 & calendar.HOUR_OF_DAY ==0
+                        & calendar.MINUTE < 1 & calendar.SECOND < 30){
+                    usedFlow = 0;
+                }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataString = sdf.format(date);
+            long mobileGPRS = dao.getMoblieGPRS(dataString);
+            long mobileRxBytes = TrafficStats.getMobileRxBytes();
+            long mobileTxBytes = TrafficStats.getMobileTxBytes();
 
+            long newGprs = (mobileRxBytes + mobileTxBytes) - mOldRxBytes
+                    - mOldTxBytes;
+            mOldRxBytes = mobileRxBytes;
+            mOldTxBytes = mobileTxBytes;
+            if (newGprs < 0){
+                newGprs = mobileRxBytes + mobileTxBytes;
             }
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-            String dataString=sdf.format(date);
-            long mobileGPRS=dao.getMobileGPRS(dataString);
-            long mobileRxBytes=TrafficStats.getMobileRxBytes();
-            long mobileTxByte=TrafficStats.getMobileTxBytes();
-            long newGprs=(mobileRxBytes+mobileTxByte)-mOldRxBytes-mOldTxBytes;
-            mOldRxBytes=mobileRxBytes;
-            mobileTxByte=mobileTxByte;
-            if (newGprs<0){
-                newGprs=mobileRxBytes+mobileTxByte;
-            }
-            if (mobileGPRS==-1){
+            if (mobileGPRS == -1) {
                 dao.insertTodayGPRS(newGprs);
             }else{
-                if (mobileGPRS<0){
-                    mobileGPRS=0;
+                if (mobileGPRS < 0){
+                    mobileGPRS = 0;
                 }
-                dao.UpdateTodayGPRS(mobileGPRS+newGprs);
+                dao.UpdataTodayGPRS(mobileGPRS + newGprs);
             }
-            usedFlow=usedFlow+newGprs;
-            SharedPreferences.Editor edit=mSp.edit();
-            edit.putLong("usedflow",usedFlow);
+            usedFlow = usedFlow + newGprs;
+            SharedPreferences.Editor edit = mSp.edit();
+            edit.putLong("usedflow", usedFlow);
             edit.commit();
         };
     };
     @Override
     public void onDestroy(){
         if (mThread != null & !mThread.interrupted()){
-            flag=false;
+            flag = false;
             mThread.interrupt();
-            mThread=null;
-
+            mThread = null;
         }
         super.onDestroy();
     }
