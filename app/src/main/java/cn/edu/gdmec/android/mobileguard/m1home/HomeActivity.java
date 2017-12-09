@@ -25,6 +25,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CacheClearListActivity;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.TrafficMonitoringActivity;
+import cn.edu.gdmec.android.mobileguard.m9advancedtools.AdvancedToolsActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private long mExitTime;
@@ -67,14 +68,14 @@ public class HomeActivity extends AppCompatActivity {
                     case 4://缓存清理
                         startActivity(CacheClearListActivity.class);
                         break;
-                    case 5://进程管理
-                        //startActivity(ProcessManagerActivity.class);
-                        break;
+//                    case 5://进程管理
+//                        //startActivity(ProcessManagerActivity.class);
+//                        break;
                     case 6://流量统计
                         startActivity(TrafficMonitoringActivity.class);
                         break;
                     case 7://高级工具
-                        //startActivity(AdvancedToolsActivity.class);
+                        startActivity(AdvancedToolsActivity.class);
                         break;
                     case 8://设置中心
                         //startActivity(SettingsActivity.class);
