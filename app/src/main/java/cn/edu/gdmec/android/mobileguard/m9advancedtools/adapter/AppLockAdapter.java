@@ -1,7 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,7 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.gdmec.android.mobileguard.m9advancedtools.entity.AppInfo;
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
 
 /**
@@ -55,10 +55,10 @@ public class AppLockAdapter extends BaseAdapter {
         holder.mAppIconImgv.setImageDrawable(appInfo.icon);
         holder.mAppNameTV.setText(appInfo.appName);
         if (appInfo.isLock){
-            holder.mLockIcon.setBackgroundResource(R.drawable.applock_icon);
+            holder.mLockIcon.setBackgroundResource(R.drawable.appunlock_icon);
         }else{
             holder.mLockIcon.setBackgroundResource(R.drawable.appunlock_icon);
-    }
+        }
         return view;
     }
     static class ViewHolder{

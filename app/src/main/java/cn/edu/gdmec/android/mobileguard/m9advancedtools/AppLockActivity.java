@@ -13,8 +13,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment.AppLockFragment;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment.AppUnLockFragment;
+
 
 /**
  * Created by student on 17/10/17.
@@ -37,7 +39,7 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.imgv_left_btn:
+            case R.id.imgv_leftbtn:
                 finish();
                 break;
             case R.id.tv_lock:
@@ -69,7 +71,7 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
 
             }
             @Override
-            public void onPageScrolledStateChanged(int arg0){
+            public void onPageScrollStateChanged(int arg0){
 
             }
         });
@@ -77,9 +79,9 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_red));
         ImageView mLeftImgv=(ImageView) findViewById(R.id.imgv_leftbtn);
-        ((TextView) findViewById(R.id.tv_tilte)).setText("程序锁");
+        ((TextView) findViewById(R.id.tv_title)).setText("程序锁");
         mLeftImgv.setOnClickListener(this);
-        mLeftImgv.setImageDrawable(R.drawable.back);
+        mLeftImgv.setImageResource(R.drawable.back);
         mAppViewPager=(ViewPager) findViewById(R.id.vp_applock);
         mLockTV=(TextView) findViewById(R.id.tv_lock);
         mUnLockTV=(TextView) findViewById(R.id.tv_unlock);

@@ -29,7 +29,7 @@ public class AppLockService extends Service {
     private boolean flag = false;
     private AppLockDao dao;
     private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
-    private List<String> packagename;
+    private List<String> packagenames;
     private Intent intent;
     private ActivityManager am;
     private List<ActivityManager.RunningTaskInfo> taskInfos;
@@ -41,7 +41,7 @@ public class AppLockService extends Service {
 
     class AppLockReceiver extends BroadcastReceiver {
         @Override
-        public void onReceiver(Context context, Intent intent) {
+        public void onReceive(Context context, Intent intent) {
             if (App.APPLOCK_ACTION.equals(intent.getAction())) {
                 tempStopProtectPackname = intent.getStringExtra("packagename");
             } else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
@@ -62,7 +62,7 @@ public class AppLockService extends Service {
 
         @Override
         public void onChange(boolean selfChange) {
-            packagename = dao.findAll();
+            packagenames = dao.findAll();
             super.onChange(selfChange);
         }
     }
@@ -70,8 +70,8 @@ public class AppLockService extends Service {
     @Override
     public void onCreate() {
         dao = new AppLockDao(this);
-        packagename = dao.findAll();
-        if (packagename.size() == 0) {
+        packagenames = dao.findAll();
+        if (packagenames.size() == 0) {
             return;
         }
         observer = new MyObserver(new Handler());

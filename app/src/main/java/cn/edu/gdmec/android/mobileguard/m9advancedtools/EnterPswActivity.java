@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.mobileguard.App;
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 /**
