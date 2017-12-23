@@ -27,7 +27,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.db.dao.TrafficDao;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.service.TrafficMonitoringService;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.utils.SystemInfoUtils;
-//jiji
+
 
 public class TrafficMonitoringActivity extends AppCompatActivity implements View.OnClickListener {
     private SharedPreferences mSP;

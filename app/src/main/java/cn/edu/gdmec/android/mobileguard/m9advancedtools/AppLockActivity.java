@@ -24,11 +24,12 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment.AppUnLockFragme
 
 public class AppLockActivity extends AppCompatActivity implements View.OnClickListener{
     private ViewPager mAppViewPager;
-    List<Fragment> mFragments=new ArrayList<Fragment>();
+    List<Fragment> mFragments = new ArrayList<Fragment>();
     private TextView mLockTV;
     private TextView mUnLockTV;
     private View slideLockView;
     private View slideUnLockView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
         initView();
         initListener();
     }
+
     @Override
     public void onClick(View view){
         switch (view.getId()){
@@ -50,59 +52,70 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
     private void initListener(){
         mAppViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+
             @Override
             public void onPageSelected(int arg0){
-                if (arg0==0){
+                if (arg0 == 0){
                     slideUnLockView.setBackgroundResource(R.drawable.slide_view);
                     slideLockView.setBackgroundColor(getResources().getColor(R.color.transparent));
+
                     mLockTV.setTextColor(getResources().getColor(R.color.black));
                     mUnLockTV.setTextColor(getResources().getColor(R.color.bright_red));
-                }else{
+                }else {
                     slideLockView.setBackgroundResource(R.drawable.slide_view);
                     slideUnLockView.setBackgroundColor(getResources().getColor(R.color.transparent));
+
                     mLockTV.setTextColor(getResources().getColor(R.color.bright_red));
                     mUnLockTV.setTextColor(getResources().getColor(R.color.black));
                 }
             }
+
             @Override
-            public void onPageScrolled(int arg0,float arg1,int arg2){
+            public void onPageScrolled(int arg0, float arg1, int arg2){
 
             }
+
             @Override
             public void onPageScrollStateChanged(int arg0){
 
             }
         });
     }
+
     private void initView(){
-        findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_red));
-        ImageView mLeftImgv=(ImageView) findViewById(R.id.imgv_leftbtn);
+        findViewById(R.id.rl_titlebar).setBackgroundColor(
+                getResources().getColor(R.color.bright_red));
+        ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("程序锁");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
-        mAppViewPager=(ViewPager) findViewById(R.id.vp_applock);
-        mLockTV=(TextView) findViewById(R.id.tv_lock);
-        mUnLockTV=(TextView) findViewById(R.id.tv_unlock);
+        mAppViewPager = (ViewPager) findViewById(R.id.vp_applock);
+        mLockTV = (TextView) findViewById(R.id.tv_lock);
+        mUnLockTV = (TextView) findViewById(R.id.tv_unlock);
         mLockTV.setOnClickListener(this);
         mUnLockTV.setOnClickListener(this);
-        slideLockView=findViewById(R.id.view_slide_lock);
-        slideUnLockView=findViewById(R.id.view_slide_unlock);
-        AppUnLockFragment unlock=new AppUnLockFragment();
-        AppLockFragment lock=new AppLockFragment();
-        mFragments.add(unlock);
+        slideLockView = findViewById(R.id.view_slide_lock);
+        slideUnLockView = findViewById(R.id.view_slide_unlock);
+        AppUnLockFragment unLock = new AppUnLockFragment();
+        AppLockFragment lock = new AppLockFragment();
+        mFragments.add(unLock);
         mFragments.add(lock);
         mAppViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+
     }
-    class MyAdapter extends FragmentPagerAdapter{
+    class MyAdapter extends FragmentPagerAdapter {
         public MyAdapter(FragmentManager fm){
             super(fm);
         }
+
         @Override
         public android.support.v4.app.Fragment getItem(int arg0){
             return mFragments.get(arg0);
         }
+
         @Override
         public int getCount(){
             return mFragments.size();

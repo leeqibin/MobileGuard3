@@ -21,7 +21,7 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
         initView();
     }
 
-    private void initView() {
+    private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(
                 getResources().getColor(R.color.bright_red));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
@@ -36,7 +36,7 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view){
         switch (view.getId()){
             case R.id.imgv_leftbtn:
                 finish();
@@ -44,10 +44,13 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
             case R.id.advanceview_numbelongs:
                 startActivity(NumBelongtoActivity.class);
                 break;
+            case R.id.advanceview_applock:
+                startActivity(AppLockActivity.class);
         }
     }
 
-    private void startActivity(Class<?> cls) {
+
+    public void startActivity(Class<?> cls){
         Intent intent = new Intent(this,cls);
         startActivity(intent);
     }
