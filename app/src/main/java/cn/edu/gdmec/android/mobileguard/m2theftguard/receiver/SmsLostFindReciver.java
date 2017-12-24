@@ -15,10 +15,6 @@ import android.util.Log;
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.service.GPSLocationService;
 
-/**
- * Created by student on 17/10/17.
- */
-
 public class SmsLostFindReciver extends BroadcastReceiver {
     private static final String TAG=SmsLostFindReciver.class.getSimpleName();
     private SharedPreferences sharedPreferences;

@@ -12,16 +12,16 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.entity.ContactInfo;
 
 /**
- * Created by student on 17/10/17.
+ * Created by Administrator on 2017/10/19 0019.
  */
 
 public class ContactAdapter extends BaseAdapter{
     private List<ContactInfo> contactInfos;
     private Context context;
-    public ContactAdapter(List<ContactInfo> contactInfos, Context context) {
+    public ContactAdapter(List<ContactInfo> contactInfos,Context context){
         super();
-        this.contactInfos=contactInfos;
-        this.context=context;
+        this.contactInfos = contactInfos;
+        this.context = context;
     }
 
     @Override
@@ -30,36 +30,33 @@ public class ContactAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
-        return contactInfos.get(position);
+    public Object getItem(int i) {
+        return contactInfos.get(i);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder=null;
-        if (convertView==null){
-            convertView = View.inflate(context, R.layout.item_list_contact_select,null);
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder holder = null;
+        if(view == null){
+            view = View.inflate(context, R.layout.item_list_contact_select,null);
             holder = new ViewHolder();
-            holder.mNameTV=(TextView)convertView.findViewById(R.id.tv_name);
-            holder.mPhoneTv=(TextView)convertView.findViewById(R.id.tv_phone);
-            convertView.setTag(holder);
+            holder.mNameTV = (TextView) view.findViewById(R.id.tv_name);
+            holder.mPhoneTV = (TextView) view.findViewById(R.id.tv_phone);
+            view.setTag(holder);
         }else{
-            holder=(ViewHolder)convertView.getTag();
+            holder = (ViewHolder) view.getTag();
         }
-        holder.mNameTV.setText(contactInfos.get(position).name);
-        holder.mPhoneTv.setText(contactInfos.get(position).phone);
-        return convertView;
+        holder.mNameTV.setText(contactInfos.get(i).name);
+        holder.mPhoneTV.setText(contactInfos.get(i).phone);
+        return view;
     }
     static class ViewHolder{
         TextView mNameTV;
-        TextView mPhoneTv;
-
-
+        TextView mPhoneTV;
     }
-
 }
