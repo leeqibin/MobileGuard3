@@ -451,7 +451,7 @@ public class ExampleInstrumentedTest {
             throw new Exception("Can't get app signature issuer message.");
         }
     }
-    //@Test
+    //@Test  ?
     public void t20AppManagerAboutVersion() throws Exception {
         result = mDevice.findObject(new UiSelector().textStartsWith("软件管家"));
         result.clickAndWaitForNewWindow();
