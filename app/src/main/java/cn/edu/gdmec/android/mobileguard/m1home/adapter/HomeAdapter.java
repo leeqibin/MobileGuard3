@@ -25,7 +25,7 @@ public class HomeAdapter extends BaseAdapter{
     public HomeAdapter(Context context){
         this.context=context;
     }
-    //设置gridView一共有多少条目
+
     @Override
     public  int getCount(){
         return 9;
