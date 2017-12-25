@@ -12,11 +12,6 @@ import android.widget.TextView;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-
-/**
- * Created by 10255 on 2017/10/9.
- */
-
 public class InterPasswordDialog extends Dialog implements View.OnClickListener{
     private TextView mTitleTV;
     private EditText mInterET;
@@ -35,39 +30,38 @@ public class InterPasswordDialog extends Dialog implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         initView();
     }
-
-    private void initView() {
-        mTitleTV=(TextView)findViewById(R.id.tv_interpwd_title);
-        mInterET=(EditText)findViewById(R.id.et_inter_password);
-        mOKBtn=(Button)findViewById(R.id.btn_comfirm);
-        mCancleBtn=(Button)findViewById(R.id.btn_dismiss);
-        mOKBtn.setOnClickListener(this);
-        mCancleBtn.setOnClickListener(this);
+    private void initView(){
+        mTitleTV = (TextView) findViewById(R.id.tv_interpwd_title);
+        mInterET = (EditText) findViewById(R.id.et_inter_password);
+        findViewById(R.id.btn_confirm).setOnClickListener(this);
+        findViewById(R.id.btn_dismiss).setOnClickListener(this);
     }
     public void setTitle(String title){
         if(!TextUtils.isEmpty(title)){
             mTitleTV.setText(title);
         }
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_comfirm:
+            case R.id.btn_confirm:
                 myCallBack.confirm();
                 break;
             case R.id.btn_dismiss:
-                myCallBack.cancel();
+                myCallBack.cancle();
                 break;
         }
     }
     public String getPassword(){
         return mInterET.getText().toString();
     }
+
     public void setCallBack(MyCallBack myCallBack){
         this.myCallBack=myCallBack;
     }
     public interface MyCallBack{
         void confirm();
-        void cancel();
+        void cancle();
     }
 }

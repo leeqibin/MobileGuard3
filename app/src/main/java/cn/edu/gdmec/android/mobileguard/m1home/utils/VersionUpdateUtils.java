@@ -1,7 +1,9 @@
 package cn.edu.gdmec.android.mobileguard.m1home.utils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.edu.gdmec.android.mobileguard.R;
+//import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
@@ -102,10 +105,10 @@ public class VersionUpdateUtils {
                 String result = EntityUtils.toString(httpEntity, "utf-8");
                 JSONObject jsonObject = new JSONObject(result);
                 versionEntity = new VersionEntity();
-                versionEntity.versioncode = jsonObject.getString("code");
+                versionEntity.versionCode = jsonObject.getString("code");
                 versionEntity.description = jsonObject.getString("des");
                 versionEntity.apkurl = jsonObject.getString("apkurl");
-                if (!mVersion.equals(versionEntity.versioncode)) {
+                if (!mVersion.equals(versionEntity.versionCode)) {
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
                 }
             }
@@ -117,7 +120,7 @@ public class VersionUpdateUtils {
     }
     private void showUpdateDialog(final VersionEntity versionEntity){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("检查到新版本："+versionEntity.versioncode);
+        builder.setTitle("检查到新版本："+versionEntity.versionCode);
         builder.setMessage(versionEntity.description);
         builder.setCancelable(false);
         builder.setIcon(R.mipmap.ic_launcher_round);

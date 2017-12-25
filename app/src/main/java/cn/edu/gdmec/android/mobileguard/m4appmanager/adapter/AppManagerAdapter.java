@@ -27,7 +27,7 @@ public class AppManagerAdapter extends BaseAdapter {
     private List<AppInfo> SystemAppInfos;
     private Context context;
 
-    public AppManagerAdapter(List<AppInfo> userAppInfos, List<AppInfo> systemAppInfos, Context context){
+    public AppManagerAdapter(List<AppInfo> userAppInfos,List<AppInfo> systemAppInfos,Context context){
         super();
         UserAppInfos = userAppInfos;
         SystemAppInfos = systemAppInfos;
@@ -92,8 +92,8 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mShareAppTV = (TextView) view.findViewById(R.id.tv_share_app);
             viewHolder.mUninstallTV = (TextView) view.findViewById(R.id.tv_uninstall_app);
             viewHolder.mAppOptionLL = (LinearLayout) view.findViewById(R.id.ll_option_app);
-            viewHolder.mActivity=(TextView)view.findViewById(R.id.tv_add_app);
             viewHolder.mAboutBTN = (TextView) view.findViewById(R.id.tv_aboutapp);
+            viewHolder.mActivityTV = (TextView) view.findViewById(R.id.tv_activityapp);
             view.setTag(viewHolder);
         }
         if(appInfo != null){
@@ -112,16 +112,16 @@ public class AppManagerAdapter extends BaseAdapter {
         viewHolder.mSettingAppTV.setOnClickListener(listener);
         viewHolder.mShareAppTV.setOnClickListener(listener);
         viewHolder.mUninstallTV.setOnClickListener(listener);
-        viewHolder.mActivity.setOnClickListener(listener);
         viewHolder.mAboutBTN.setOnClickListener(listener);
+        viewHolder.mActivityTV.setOnClickListener(listener);
 
         return view;
     }
     private TextView getTextView(){
         TextView tv = new TextView(context);
-        tv.setBackgroundColor(ContextCompat.getColor(context, R.color.graye5));
-        tv.setPadding(DensityUtil.dip2px(context,5), DensityUtil.dip2px(context,5), DensityUtil.dip2px(context,5), DensityUtil.dip2px(context,5));
-        tv.setTextColor(ContextCompat.getColor(context, R.color.black));
+        tv.setBackgroundColor(ContextCompat.getColor(context,R.color.graye5));
+        tv.setPadding(DensityUtil.dip2px(context,5),DensityUtil.dip2px(context,5),DensityUtil.dip2px(context,5),DensityUtil.dip2px(context,5));
+        tv.setTextColor(ContextCompat.getColor(context,R.color.black));
         return tv;
     }
     static class ViewHolder{
@@ -135,7 +135,7 @@ public class AppManagerAdapter extends BaseAdapter {
         TextView mAppNameTV;
         LinearLayout mAppOptionLL;
         TextView mAboutBTN;
-        TextView mActivity;
+        TextView mActivityTV;
     }
     class MyClickListener implements View.OnClickListener{
         private AppInfo appInfo;
@@ -156,18 +156,19 @@ public class AppManagerAdapter extends BaseAdapter {
                 case R.id.tv_setting_app:
                     EngineUtils.SettingAppDetail(context,appInfo);
                     break;
-                case R.id.tv_add_app:
-                    EngineUtils.ActApp(context,appInfo);
-                    break;
                 case R.id.tv_uninstall_app:
                     if(appInfo.packageName.equals(context.getPackageName())){
-                        Toast.makeText(context,"您没有权限卸载此应用！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"您没有权限卸载此应用！",Toast.LENGTH_SHORT).show();
                         return;
                     }
                     EngineUtils.uninstallApplication(context,appInfo);
                     break;
                 case R.id.tv_aboutapp:
-                    EngineUtils.AboutSign(context,appInfo);
+                    EngineUtils.showApplicationInfo(context,appInfo);
+                    break;
+                case R.id.tv_activityapp:
+                    EngineUtils.showApplicationActivities(context,appInfo);
+                    break;
             }
         }
     }

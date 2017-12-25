@@ -1,8 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard.receiver;
 
-/**
- * Created by student on 17/10/17.
- */
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

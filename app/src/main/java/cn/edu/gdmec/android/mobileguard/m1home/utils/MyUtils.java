@@ -10,9 +10,6 @@ import android.os.Environment;
 
 import java.io.File;
 
-/**
- * Created by 10255 on 2017/9/21.
- */
 
 public class MyUtils {
     public static String getVersion(Context context){

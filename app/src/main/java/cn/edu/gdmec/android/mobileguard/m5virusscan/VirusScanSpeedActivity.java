@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -33,7 +33,6 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.UrlClient;
 
-
 public class VirusScanSpeedActivity extends AppCompatActivity implements View.OnClickListener{
     protected static final int SCAN_BENGIN = 100;
     protected static final int SCANNING = 101;
@@ -53,6 +52,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
     private ScanVirusAdapter adapter;
     private List<ScanAppInfo> mScanAppInfos = new ArrayList<ScanAppInfo>();
     private SharedPreferences mSP;
+
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
@@ -78,7 +78,6 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     break;
             }
         }
-
     };
     private void saveScanTime() {
         SharedPreferences.Editor edit = mSP.edit();
@@ -88,7 +87,6 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         edit.putString("lastVirusScan", currentTime);
         edit.commit();
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +102,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
             scanVirus();
         }
     }
+
     private void cloudScanVirus() {
         flag =true;
         List<PackageInfo> installedPackages = pm
@@ -128,6 +127,9 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
             restfulTask.execute(scanInfo);
         }
     }
+    /**
+     * 扫描病毒 使用线程做耗时任务
+     * */
     private void scanVirus() {
         flag = true;
         isStop = false;
@@ -178,6 +180,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
                 }
                 msg = Message.obtain();
                 msg.what = SCAN_FINISH;
@@ -185,7 +188,9 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
             };
         }.start();
     }
-    public class RestfulTask extends AsyncTask<ScanAppInfo,Integer,ScanAppInfo> {
+
+
+    public class RestfulTask extends AsyncTask <ScanAppInfo,Integer,ScanAppInfo>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -227,7 +232,6 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
             }
         }
     }
-
     private void initView() {
         findViewById(R.id.rl_titlebar).setBackgroundColor(
                 getResources().getColor(R.color.light_blue));
@@ -258,21 +262,27 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
+        //System.out.println(process);
         switch (view.getId()) {
             case R.id.imgv_leftbtn:
                 finish();
                 break;
             case R.id.btn_canclescan:
                 if (process == total & process > 0) {
+                    // 扫描已完成
                     finish();
                 } else if (process > 0 & process < total & isStop == false) {
                     mScanningIcon.clearAnimation();
+                    // 取消扫描
                     flag = false;
+                    // 更换背景图片
                     mCancleBtn.setBackgroundResource(R.drawable.restart_scan_btn);
                 } else if (isStop) {
                     startAnim();
-                    scanVirus();
-                    mCancleBtn.setBackgroundResource(R.drawable.scanning_icon);
+                    // 重新扫描
+                    cloudScanVirus();
+                    // 更换背景图片
+                    mCancleBtn.setBackgroundResource(R.drawable.cancel_scan_btn_selector);
                 }
                 break;
         }
@@ -284,4 +294,3 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         super.onDestroy();
     }
 }
-

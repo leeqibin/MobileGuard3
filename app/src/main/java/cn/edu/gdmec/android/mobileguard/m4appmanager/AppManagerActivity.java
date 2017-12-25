@@ -29,13 +29,11 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     private TextView mPhoneMemoryTV;
     private TextView mSDMemoryTV;
     private ListView mListView;
-    private TextView mActivity;
     private List<AppInfo> appInfos;
     private List<AppInfo> userAppInfos = new ArrayList<AppInfo>();
     private List<AppInfo> systemAppInfos = new ArrayList<AppInfo>();
     private AppManagerAdapter adapter;
     private TextView mAppNumTV;
-    private TextView mAboutBTN;
     private UninstallRececiver receciver;
 
     private Handler mHandler = new Handler(){
@@ -101,8 +99,6 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
         mSDMemoryTV = (TextView) findViewById(R.id.tv_sdmemory_appmanager);
         mAppNumTV = (TextView) findViewById(R.id.tv_appnumber);
         mListView = (ListView) findViewById(R.id.lv_appmanager);
-        mActivity=(TextView)findViewById(R.id.tv_add_app);
-        mAboutBTN = (TextView) findViewById(R.id.tv_aboutapp);
         getMemoryFromPhone();
         initData();
         initListener();

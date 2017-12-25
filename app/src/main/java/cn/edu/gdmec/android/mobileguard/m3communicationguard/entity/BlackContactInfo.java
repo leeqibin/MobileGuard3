@@ -1,14 +1,14 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard.entity;
 
 /**
- * Created by student on 17/10/17.
+ * Created by Administrator on 2017/10/31 0031.
  */
 
 public class BlackContactInfo {
     public String phoneNumber;
     public String contactName;
-    public String contactFenlei;
     public int mode;
+    public String blackType;
     public String getModeString(int mode){
         switch (mode){
             case 1:

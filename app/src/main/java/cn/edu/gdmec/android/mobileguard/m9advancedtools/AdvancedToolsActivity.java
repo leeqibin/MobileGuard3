@@ -1,29 +1,24 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-/**
- * Created by student on 17/10/17.
- */
+public class AdvancedToolsActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class AdvancedToolsActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_tools);
         initView();
     }
-
     private void initView(){
-        findViewById(R.id.rl_titlebar).setBackgroundColor(
-                getResources().getColor(R.color.bright_red));
+        findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_red));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("高级工具");
         mLeftImgv.setOnClickListener(this);
@@ -36,7 +31,7 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
         switch (view.getId()){
             case R.id.imgv_leftbtn:
                 finish();
@@ -46,10 +41,9 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.advanceview_applock:
                 startActivity(AppLockActivity.class);
+                break;
         }
     }
-
-
     public void startActivity(Class<?> cls){
         Intent intent = new Intent(this,cls);
         startActivity(intent);
