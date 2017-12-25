@@ -10,11 +10,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-/**
- * Created by student on 17/10/17.
- */
-
-public class App extends Application{
+public class App extends Application {
     public static final String APPLOCK_ACTION = "cn.edu.gdmec.android.mobileguard.m9advancedtools.applock";
     public static final String APPLOCK_CONTENT_URI = "content://cn.edu.gdmec.android.mobileguard.m9advancedtools.applock";
     @Override
@@ -34,6 +30,7 @@ public class App extends Application{
             String bindsim = sp.getString("sim","");
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             String realsim = tm.getSimSerialNumber();
+            realsim="999";
             if(bindsim.equals(realsim)){
                 Log.i("","sim卡未发生变化，还是你的手机");
             }else{

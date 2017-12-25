@@ -12,11 +12,7 @@ import android.widget.TextView;
 import cn.edu.gdmec.android.mobileguard.R;
 
 
-/**
- * Created by 10255 on 2017/10/9.
- */
-
-public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
+public class SetupPasswordDialog extends Dialog implements View.OnClickListener {
     private TextView mTitleTV;
     public EditText mFirstPWDET;
     public EditText mAffirmET;
@@ -29,7 +25,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
         initView();
     }
 
-    public SetUpPasswordDialog(@NonNull Context context) {
+    public SetupPasswordDialog(@NonNull Context context) {
         super(context, R.style.dialog_custom);
     }
     private void initView(){
@@ -53,7 +49,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btn_ok:
-                System.out.print("SetUpPasswordDialog");
+                System.out.print("SetupPasswordDialog");
                 myCallBack.ok();
                 break;
             case R.id.btn_cancle:

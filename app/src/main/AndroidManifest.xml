@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="cn.edu.gdmec.android.mobileguard">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.edu.gdmec.android.mobileguard">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -63,7 +63,7 @@
             android:exported="true" />
 
         <receiver
-            android:name=".m2theftguard.receiver.SmsLostFindReciver"
+            android:name=".m2theftguard.receiver.SmsLostFindReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -71,7 +71,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".m2theftguard.receiver.MyDeviceAdminReciever"
+            android:name=".m2theftguard.receiver.MyDeviceAdminReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
@@ -110,7 +110,8 @@
         <activity android:name=".m5virusscan.VirusScanActivity" />
         <activity android:name=".m6cleancache.CacheClearListActivity" />
         <activity android:name=".m6cleancache.CleanCacheActivity" />
-
+        <activity android:name=".m7processmanager.ProcessManagerActivity" />
+        <activity android:name=".m7processmanager.ProcessManagerSettingActivity" />
 
         <service
             android:name=".m8trafficmonitor.service.TrafficMonitoringService"
@@ -118,7 +119,7 @@
             android:exported="true" />
 
         <receiver
-            android:name=".m8trafficmonitor.receiver.BootCompleteReciever"
+            android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
             android:enabled="true"
             android:exported="true" />
 

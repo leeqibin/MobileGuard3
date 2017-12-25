@@ -24,8 +24,8 @@ public class BlackContactAdapter extends BaseAdapter {
     private BlackConactCallBack callBack;
     class ViewHolder{
         TextView mNameTV;
-        TextView mFenleiTV;
         TextView mModeTV;
+        TextView mTypeTV;
         View mContactImgv;
         View mDeleteView;
     }
@@ -64,7 +64,7 @@ public class BlackContactAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.mNameTV = (TextView) view.findViewById(R.id.tv_black_name);
             holder.mModeTV = (TextView) view.findViewById(R.id.tv_black_mode);
-            holder.mFenleiTV=(TextView) view.findViewById(R.id.tv_black_fenlei);
+            holder.mTypeTV = (TextView) view.findViewById(R.id.tv_black_type);
             holder.mContactImgv = view.findViewById(R.id.view_black_icon);
             holder.mDeleteView = view.findViewById(R.id.view_black_delete);
             view.setTag(holder);
@@ -73,12 +73,9 @@ public class BlackContactAdapter extends BaseAdapter {
         }
         holder.mNameTV.setText(contactInfos.get(i).contactName+"("+contactInfos.get(i).phoneNumber+")");
         holder.mModeTV.setText(contactInfos.get(i).getModeString(contactInfos.get(i).mode));
-        holder.mFenleiTV.setText(contactInfos.get(i).contactFenlei);
-
+        holder.mTypeTV.setText(contactInfos.get(i).blackType);
         holder.mNameTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
         holder.mModeTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
-        holder.mFenleiTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
-
         holder.mContactImgv.setBackgroundResource(R.drawable.brightpurple_contact_icon);
         holder.mDeleteView.setOnClickListener(new View.OnClickListener(){
             @Override

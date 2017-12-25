@@ -3,5 +3,4 @@
     <item android:drawable="@drawable/broom_left" android:duration="200"></item>
     <item android:drawable="@drawable/broom_center" android:duration="200"></item>
     <item android:drawable="@drawable/broom_right" android:duration="200"></item>
-
 </animation-list>

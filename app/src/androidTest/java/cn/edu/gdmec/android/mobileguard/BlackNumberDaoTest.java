@@ -1,7 +1,5 @@
 package cn.edu.gdmec.android.mobileguard;
 
-
-
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SdkSuppress;
@@ -20,12 +18,6 @@ import java.util.Random;
 
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
-
-
-
-/**
- * Created by pc on 2017/11/3.
- */
 
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = 18)
@@ -46,7 +38,6 @@ public class BlackNumberDaoTest {
             BlackContactInfo info = new BlackContactInfo();
             info.phoneNumber = 13500000000l + i + "";
             info.contactName = "zhangsan" + i;
-            info.contactFenlei="骚扰"+i;
             info.mode = random.nextInt(3) + 1;
             dao.add(info);
         }

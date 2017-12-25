@@ -13,56 +13,53 @@ import java.util.List;
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
-
-/**
- * Created by student on 17/10/17.
- */
-
 public class AppLockAdapter extends BaseAdapter {
     private List<AppInfo> appInfos;
     private Context context;
 
-    public AppLockAdapter(List<AppInfo> appInfos, Context context){
+    public AppLockAdapter(List<AppInfo> appInfos, Context context) {
         super();
         this.appInfos = appInfos;
         this.context = context;
     }
+
     @Override
-    public int getCount(){
+    public int getCount() {
         return appInfos.size();
     }
 
     @Override
-    public Object getItem(int i){
+    public Object getItem(int i) {
         return appInfos.get(i);
     }
 
     @Override
-    public long getItemId(int i){
+    public long getItemId(int i) {
         return i;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup){
+    public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if (view !=null && view instanceof RelativeLayout){
+        if(view !=null && view instanceof RelativeLayout){
             holder = (ViewHolder) view.getTag();
-        }else {
+        }else{
             holder = new ViewHolder();
-            view = view.inflate(context, R.layout.item_list_applock, null);
+            view = View.inflate(context, R.layout.item_list_applock, null);
             holder.mAppIconImgv = (ImageView) view.findViewById(R.id.imgv_appicon);
             holder.mAppNameTV = (TextView) view.findViewById(R.id.tv_appname);
             holder.mLockIcon = (ImageView) view.findViewById(R.id.imgv_lock);
             view.setTag(holder);
         }
+
         final AppInfo appInfo = appInfos.get(i);
         holder.mAppIconImgv.setImageDrawable(appInfo.icon);
         holder.mAppNameTV.setText(appInfo.appName);
-        if (appInfo.isLock){
-
+        if(appInfo.isLock){
+            //表示当前应用已经加锁
             holder.mLockIcon.setBackgroundResource(R.drawable.applock_icon);
-        }else {
-
+        }else{
+            //当前应用未加锁
             holder.mLockIcon.setBackgroundResource(R.drawable.appunlock_icon);
         }
         return view;
@@ -70,7 +67,6 @@ public class AppLockAdapter extends BaseAdapter {
     static class ViewHolder{
         TextView mAppNameTV;
         ImageView mAppIconImgv;
-
         ImageView mLockIcon;
     }
 }
