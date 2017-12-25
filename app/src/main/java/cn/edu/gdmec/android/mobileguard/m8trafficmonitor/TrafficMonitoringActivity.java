@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m8trafficmonitor;
 
+
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -34,7 +35,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
     private TextView mTotalTV;
     private TextView mUsedTV;
     private TextView mToDayTV;
-//    private TextView mOperatorTV;
+    //    private TextView mOperatorTV;
     private TrafficDao dao;
     private ImageView mRemindIMGV;
     private TextView mRemindTV;
@@ -45,7 +46,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             isBound = true;
-                       TrafficMonitoringService.MyBinder binder = (TrafficMonitoringService.MyBinder) iBinder;
+            TrafficMonitoringService.MyBinder binder = (TrafficMonitoringService.MyBinder) iBinder;
             trafficMonitoringService = binder.getService();
             trafficMonitoringService.getUsedFlow();
             System.out.println("Usedflow:"+trafficMonitoringService.getUsedFlow());
